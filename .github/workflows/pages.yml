@@ -1,0 +1,25 @@
+on: [push]
+jobs:
+  deploy:
+    permissions:
+      pages: write  	# to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    runs-on: ubuntu-latest
+
+    steps:
+  	- name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Hugo
+        run: |
+          apt update
+          apt install -y hugo
+
+      - name: Build
+        run: hugo
+
+      - name: Deploy
+        uses: actions/deploy-pages@v4
+        with:
+          - 
